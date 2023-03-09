@@ -2,27 +2,38 @@ import { Link } from "react-router-dom";
 
 export function Footer() {
     return (
-        <footer className="footer">
-            <div className="container">
-                <div className="footer__inner">
-                    <div className="footer__logo">
-                        <Link to="/">Logo</Link>
-                    </div>
-                    <nav className="footer__nav">
-                        <ul className="footer__nav-list">
-                            <li className="footer__nav-item">
-                                <Link to="/about">About</Link>
-                            </li>
-                            <li className="footer__nav-item">
-                                <Link to="/contact">Contact</Link>
-                            </li>
-                            <li className="footer__nav-item">
-                                <Link to="/login">Login</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+        // add a responsive footer with tailwindcss
+        <footer className="bg-primary text-white text-center text-xs p-3 absolute bottom-0 w-full">
+            <p>
+                <Link to="/mentions-legales" className="text-white hover:text-gray-300">
+                    Mentions légales
+                </Link>
+            </p>
+            <p>
+                <Link to="/cgv" className="text-white hover:text-gray-300">
+                    Conditions générales de vente
+                </Link>
+            </p>
+            <p>
+                <Link to="/cgu" className="text-white hover:text-gray-300">
+                    Conditions générales d'utilisation
+                </Link>
+            </p>
+            <p>
+                <Link to="/politique-de-confidentialite" className="text-white hover:text-gray-300">
+                    Politique de confidentialité
+                </Link>
+            </p>
+            <p>
+                <Link to="/cookies" className="text-white hover:text-gray-300">
+                    Cookies
+                </Link>
+            </p>
+            <p>
+                <Link to="/plan-du-site" className="text-white hover:text-gray-300">
+                    Plan du site
+                </Link>
+            </p>
         </footer>
     );
 }
