@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function LandingPage() {
+export function LandingPage() {
     return (
         <div>
             <h1>Bienvenue sur Pep's Design</h1>
@@ -9,6 +9,8 @@ export default function LandingPage() {
                 <Link to="/">Landing page</Link>
                 <Link to="/accueil">Accueil</Link>
                 <Link to="/series">Séries</Link>
+                <Link to="/login">Connexion</Link>
+                <Link to="/register">Inscription</Link>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
-import Footer from "../components/common/footer/Footer";
-import Header from "../components/common/header/Header";
+import { Footer } from "@/components/commons/footer/Footer";
+import { Header } from "@/components/commons/header/Header";
 
-export default function Home() {
+export function Home() {
     return (
         <>
             <Header />
