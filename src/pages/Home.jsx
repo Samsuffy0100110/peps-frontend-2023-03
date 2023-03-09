@@ -1,7 +1,7 @@
-import { Footer } from "@/components/partials/footer/Footer";
-import { Header } from "@/components/partials/header/Header";
+import Footer from "../components/common/footer/Footer";
+import Header from "../components/common/header/Header";
 
-export function Home() {
+export default function Home() {
     return (
         <>
             <Header />
