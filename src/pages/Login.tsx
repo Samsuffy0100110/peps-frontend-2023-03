@@ -20,7 +20,8 @@ export function Login() {
         const { name, value } = event.currentTarget;
         setFormDatas({...formDatas, [name]: value});
     };
-
+    const token = localStorage.getItem("token");
+    console.log(token);
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try{
@@ -35,7 +36,7 @@ export function Login() {
             if (decodedToken.roles.includes("ROLE_ADMIN")) {
                 navigate("/admin");
             } else {
-                navigate("/");
+                navigate("/accueil");
             }
         } catch (error) {
             setError("Identifiants incorrects");
