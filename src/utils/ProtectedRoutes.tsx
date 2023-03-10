@@ -19,7 +19,7 @@ export function ProtectedRoutes({ children }: { children: JSX.Element }) {
     return (
         <Routes>
             <Route path="/" element={children} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/produits" element={<Products />} />
         </Routes>
     );
 }

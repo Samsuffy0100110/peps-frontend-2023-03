@@ -9,7 +9,7 @@ const links = [
     { name: 'admin', path: '/admin' },
     { name: '404', path: '/*' },
     { name: '403', path: '/no-way' },
-    { name: 'Produits', path: '/admin/products' },
+    { name: 'Produits', path: '/admin/produits' },
 ];
 
 export function SideBar() {
