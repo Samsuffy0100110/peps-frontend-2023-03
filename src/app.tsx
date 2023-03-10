@@ -1,5 +1,6 @@
 import { ConnectedUserContextProvider } from "@/contexts/ConnectedUserContext";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { AdminMain } from "@/admin/pages/AdminMain";
 import { LandingPage } from "@/pages/LandingPage";
 import { Logout } from "@/pages/Logout";
@@ -15,9 +16,16 @@ export function App() {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/accueil" element={<Home />} />
                     <Route path="*" element={<h1>404</h1>} />
+                    <Route path="/no-way" element={<h1>403</h1>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/logout" element={<Logout />} />
-                    <Route path="/admin/*" element={<AdminMain />} />
+                    <Route
+                        path="/admin/*"
+                        element={
+                            <ProtectedRoutes>
+                                <AdminMain />
+                            </ProtectedRoutes>
+                        } />
                 </Routes>
             </ConnectedUserContextProvider>
         </Router>
