@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Products } from "@/admin/pages/product/Products";
 import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
 
 export function ProtectedRoutes({ children }: { children: JSX.Element }) {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ export function ProtectedRoutes({ children }: { children: JSX.Element }) {
     return (
         <Routes>
             <Route path="/" element={children} />
+            <Route path="/products" element={<Products />} />
         </Routes>
     );
 }
