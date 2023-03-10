@@ -1,9 +1,8 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { AdminMain } from "@/admin/pages/AdminMain";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
-export function ProtectedRoutes() {
+export function ProtectedRoutes({ children }: { children: JSX.Element }) {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,7 +17,7 @@ export function ProtectedRoutes() {
 
     return (
         <Routes>
-            <Route path="/" element={<AdminMain />} />
+            <Route path="/" element={children} />
         </Routes>
     );
 }
