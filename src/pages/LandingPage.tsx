@@ -1,4 +1,3 @@
-import style from "./LandingPage.module.scss";
 import { Link } from "react-router-dom";
 
 export function LandingPage() {

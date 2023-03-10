@@ -1,5 +1,4 @@
-import { SideBar } from '@/admin/components/sideBar/SideBar';
-import style from './AdminMain.module.scss';
+import { SideBar } from '@/admin/components/SideBar';
 
 export function AdminMain() {
 
