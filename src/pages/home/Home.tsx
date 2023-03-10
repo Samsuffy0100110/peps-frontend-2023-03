@@ -1,5 +1,6 @@
 import { Footer } from "@/components/commons/footer/Footer";
 import { Header } from "@/components/commons/header/Header";
+import style from "./Home.module.scss";
 
 export function Home() {
     return (

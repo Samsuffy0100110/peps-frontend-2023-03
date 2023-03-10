@@ -1,0 +1,35 @@
+@import '@main';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: $primary-color;
+    color: $tertiary-color;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: $tertiary-color;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+/*
+.nav
+.navList
+.navItem
+.navLink
+.menuButton
+.menu
+.menuOpen
+.menuList
+.menuItem
+.menuLink
+*/
