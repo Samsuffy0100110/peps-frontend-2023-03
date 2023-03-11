@@ -23,10 +23,16 @@ export function Categories() {
         <>
             <SideBar />
             <h1 className="text-3xl text-center text-secondary mt-8 mb-8">Tout les categories</h1>
-            <div className="flex flex-col h-screen w-full">
+            {/* add a category */}
+            <div className="flex justify-end mb-4 mr-4">
+                <Link to="/admin/categories/create">
+                    <button className="bg-primary text-white px-4 py-2 rounded-md">Ajouter une categorie</button>
+                </Link>
+            </div>
+            <div className="flex flex-col h-screen w-full ml-64">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div className="shadow overflow-hidden border-b border-primary sm:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
@@ -48,8 +54,11 @@ export function Categories() {
                                         >
                                             Image
                                         </th>
-                                        <th scope="col" className="relative px-6 py-3">
-                                            <span className="sr-only">Modifier</span>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Action
                                         </th>
                                     </tr>
                                 </thead>
@@ -66,25 +75,23 @@ export function Categories() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">
-                                                    {category.slug}
-                                                </div>
+                                                <div className="text-sm text-gray-900">{category.slug}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">
                                                     <img
                                                         src={category.image}
                                                         alt={category.name}
-                                                        className="w-20"
+                                                        className="w-20 h-20 object-cover"
                                                     />
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 <Link
                                                     to={`/admin/categories/${category.id}`}
                                                     className="text-indigo-600 hover:text-indigo-900"
                                                 >
-                                                    Modifier
+                                                    Edit
                                                 </Link>
                                             </td>
                                         </tr>
@@ -98,3 +105,4 @@ export function Categories() {
         </>
     );
 }
+

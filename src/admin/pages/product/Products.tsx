@@ -23,7 +23,7 @@ export function Products() {
         <>
             <SideBar />
             <h1 className="text-3xl text-center text-secondary mt-8 mb-8">Tout les produits</h1>
-            <div className="flex flex-col h-screen w-full">
+            <div className="flex flex-col h-screen w-full ml-64">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
