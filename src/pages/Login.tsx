@@ -24,7 +24,7 @@ export function Login() {
         event.preventDefault();
         try{
             const response = await axios.post(
-                "http://127.0.0.1:8000/api/login",
+                `${import.meta.env.VITE_BACKEND_URL}/api/login`,
                 formDatas
             );
             sessionStorage.setItem("token", response.data.token);

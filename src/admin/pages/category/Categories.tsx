@@ -9,9 +9,11 @@ export function Categories() {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/categories');
-                const data = response.data;
-                setCategories(data);
+                await axios
+                    .get(`${import.meta.env.VITE_BACKEND_URL}/api/categories`)
+                    .then((response) => {
+                        setCategories(response.data);
+                    });
             } catch (error) {
                 console.log(error);
             }

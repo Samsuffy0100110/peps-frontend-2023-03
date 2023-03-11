@@ -9,9 +9,11 @@ export function Products() {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/products');
-                const data = response.data;
-                setProducts(data);
+                await axios
+                    .get(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
+                    .then((response) => {
+                        setProducts(response.data);
+                    });
             } catch (error) {
                 console.log(error);
             }
