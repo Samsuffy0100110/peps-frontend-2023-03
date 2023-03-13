@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [user, setUser] = useState({ name: 'John Doe', avatar: 'https://i.pravatar.cc/300' });
 
     return (

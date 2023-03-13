@@ -1,6 +1,6 @@
 import { ConnectedUserContextProvider } from "@/contexts/ConnectedUserContext";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AdminDashboard } from "@/admin/pages/AdminDashboard";
+import { AdminRedirect } from "@/components/AdminRedirect";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { LandingPage } from "@/pages/LandingPage";
 import { Logout } from "@/pages/Logout";
@@ -23,7 +23,7 @@ export function App() {
                         path="/admin/*"
                         element={
                             <ProtectedRoutes>
-                                <AdminDashboard />
+                                <AdminRedirect />
                             </ProtectedRoutes>
                         } />
                 </Routes>

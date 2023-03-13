@@ -1,17 +1,18 @@
-import { SideBar } from '@/admin/components/SideBar';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export function Products() {
-    const [products, setProducts] = useState([]);
+export function GetProducts() {
+
+
+    const [products, setProducts] = useState<string[]>([]);
 
     useEffect(() => {
         const getProducts = async () => {
             try {
                 await axios
                     .get(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
-                    .then((response) => {
+                    .then((response: any) => {
                         setProducts(response.data);
                     });
             } catch (error) {
@@ -23,12 +24,10 @@ export function Products() {
 
     return (
         <>
-            <SideBar />
-            <h1 className="text-3xl text-center text-secondary mt-8 mb-8">Tout les produits</h1>
             <div className="flex flex-col h-screen w-full ml-64">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div className="shadow overflow-hidden border-b border-primary sm:rounded-lg">
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
@@ -42,7 +41,7 @@ export function Products() {
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Prix
+                                            Slug
                                         </th>
                                         <th
                                             scope="col"
@@ -54,13 +53,13 @@ export function Products() {
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Slug
+                                            Prix
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Description
+                                            Catégorie
                                         </th>
                                         <th
                                             scope="col"
@@ -74,13 +73,10 @@ export function Products() {
                                         >
                                             Images
                                         </th>
-                                        <th scope="col" className="relative px-6 py-3">
-                                            <span className="sr-only">Modifier</span>
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {products.map((product: any) => (
+                                    {products.map((product: string | any) => (
                                         <tr key={product.id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
@@ -93,51 +89,44 @@ export function Products() {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">
-                                                    {product.price * 100} €
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">
-                                                    <img
-                                                        src={product.image}
-                                                        alt={product.name}
-                                                        className="w-40 h-40"
-                                                    />
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">
                                                     {product.slug}
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">
-                                                    {product.description}
+                                                    <img
+                                                        src={`${import.meta.env.VITE_BACKEND_URL}/images/products/${product.image}`}
+                                                        alt={product.name}
+                                                        className="w-20"
+                                                    />
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                {product.options.map((option: any) => (
-                                                    <div key={option.id}>
-                                                        <div className="text-sm text-gray-900">
+                                                <div className="text-sm text-gray-900">
+                                                    {product.price} €
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {product.options.map(
+                                                    (option: string | any) => (
+                                                        <div key={option.id}>
                                                             {option.name}
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    )
+                                                )}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                {product.imagesProducts.map((image: any) => (
-                                                    <div key={image.id}>
-                                                        <div className="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1">
-                                                            <div className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
-                                                                <img
-                                                                    src={image.name}
-                                                                    alt={image.name}
-                                                                    className="w-20 h-20"
-                                                                />
-                                                            </div>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {product.imagesProducts.map(
+                                                    (image: string | any) => (
+                                                        <div key={image.id}>
+                                                            <img
+                                                                src={`${import.meta.env.VITE_BACKEND_URL}/images/products/${image.name}`}
+                                                                alt={image.image}
+                                                                className="w-20"
+                                                            />
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    )
+                                                )}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <Link

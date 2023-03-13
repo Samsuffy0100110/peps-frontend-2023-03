@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export function Logout() {
     const navigate = useNavigate();
-    const [Loading , setLoading] = useState(true);
+    const [Loading , setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {

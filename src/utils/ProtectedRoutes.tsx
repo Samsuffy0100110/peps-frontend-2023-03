@@ -1,6 +1,4 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Categories } from "@/admin/pages/category/Categories";
-import { Products } from "@/admin/pages/product/Products";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 
@@ -11,7 +9,7 @@ export function ProtectedRoutes({ children }: { children: JSX.Element }) {
         const token = sessionStorage.getItem("token");
         const decodedToken = jwt_decode<{roles: string[]}>(token!);
         if (decodedToken.roles.includes("ROLE_ADMIN")) {
-            navigate("/admin");
+            window.location.href = `${import.meta.env.VITE_BACKEND_URL}/admin`;
         } else {
             navigate("/no-way");
         }
@@ -20,8 +18,6 @@ export function ProtectedRoutes({ children }: { children: JSX.Element }) {
     return (
         <Routes>
             <Route path="/" element={children} />
-            <Route path="/produits" element={<Products />} />
-            <Route path="/categories" element={<Categories />} />
         </Routes>
     );
 }

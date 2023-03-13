@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 export function Login() {
-    const { setConnectedUser } = useContext(ConnectedUserContext);
+    const { setConnectedUser } = useContext<any>(ConnectedUserContext);
     const navigate = useNavigate();
 
     const [formDatas, setFormDatas] = useState({
@@ -13,7 +13,7 @@ export function Login() {
         password: ""
     });
 
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
     const handleChange = (event : FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;

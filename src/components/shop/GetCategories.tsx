@@ -1,10 +1,8 @@
-import { SideBar } from '@/admin/components/SideBar';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export function Categories() {
-    const [categories, setCategories] = useState([]);
+export function GetCategories() {
+    const [categories, setCategories] = useState<any[]>([]);
 
     useEffect(() => {
         const getCategories = async () => {
@@ -23,14 +21,6 @@ export function Categories() {
 
     return (
         <>
-            <SideBar />
-            <h1 className="text-3xl text-center text-secondary mt-8 mb-8">Tout les categories</h1>
-            {/* add a category */}
-            <div className="flex justify-end mb-4 mr-4">
-                <Link to="/admin/categories/create">
-                    <button className="bg-primary text-white px-4 py-2 rounded-md">Ajouter une categorie</button>
-                </Link>
-            </div>
             <div className="flex flex-col h-screen w-full ml-64">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -56,16 +46,10 @@ export function Categories() {
                                         >
                                             Image
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Action
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {categories.map((category: any) => (
+                                    {categories.map((category: string | any) => (
                                         <tr key={category.id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
@@ -77,24 +61,18 @@ export function Categories() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{category.slug}</div>
+                                                <div className="text-sm text-gray-900">
+                                                    {category.slug}
+                                                </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">
                                                     <img
-                                                        src={category.image}
+                                                        src={`${import.meta.env.VITE_BACKEND_URL}/images/categories/${category.image}`}
                                                         alt={category.name}
-                                                        className="w-20 h-20 object-cover"
+                                                        className="w-20"
                                                     />
                                                 </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                <Link
-                                                    to={`/admin/categories/${category.id}`}
-                                                    className="text-indigo-600 hover:text-indigo-900"
-                                                >
-                                                    Edit
-                                                </Link>
                                             </td>
                                         </tr>
                                     ))}
@@ -107,4 +85,3 @@ export function Categories() {
         </>
     );
 }
-
