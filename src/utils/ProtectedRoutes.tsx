@@ -7,7 +7,13 @@ export function ProtectedRoutes({ children }: { children: JSX.Element }) {
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
+
+        if (!token) {
+            navigate("/no-way");
+            return;
+        }
         const decodedToken = jwt_decode<{roles: string[]}>(token!);
+        
         if (decodedToken.roles.includes("ROLE_ADMIN")) {
             window.location.href = `${import.meta.env.VITE_BACKEND_URL}/admin`;
         } else {

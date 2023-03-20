@@ -14,14 +14,27 @@ export function Logout() {
 
     useEffect(() => {
         if (!Loading) {
-            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
             navigate('/accueil');
         }
     }
     , [Loading, navigate]);
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-4xl font-bold text-primary">Déconnexion en cours...</h1>
-        </div>
+        <>
+        {Loading ? (
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+                <h2 className="text-3xl font-bold underline text-primary">
+                    Deconnexion.....
+                </h2>
+            </div>
+        ) : (
+            <>
+                <h2 className="text-3xl font-bold underline text-primary">
+                    Deconnexion....
+                </h2>
+            </>
+        )}
+        </>
     );
 }

@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const ConnectedUserContext = createContext({} as any);
 export function ConnectedUserContextProvider({ children }: { children:  React.ReactNode }) {
     // on crée un state pour stocker l'utilisateur connecté
-    const [connectedUser, setConnectedUser] = useState(null);
+    const [connectedUser, setConnectedUser] = useState<any>(null);
 
     return (
         /* on retourne le contexte avec la valeur de l'utilisateur connecté
