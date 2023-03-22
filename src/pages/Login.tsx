@@ -36,7 +36,7 @@ export function Login() {
             );
 
             setConnectedUser(connectingUser.data);
-
+            sessionStorage.setItem("user", JSON.stringify(connectingUser.data));
             if (decodedToken.roles.includes("ROLE_ADMIN")) {
                 console.log(connectingUser.data);
                 navigate("/admin");

@@ -1,13 +1,19 @@
 import { ConnectedUserContext } from "@/contexts/ConnectedUserContext";
+import { useState, useContext, useEffect } from 'react';
 import { Menu, MenuItem } from '@mui/material';
-import { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 
 export function Header() {
     const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const [user, setUser] = useState({ name: 'John Doe', avatar: 'https://i.pravatar.cc/300' });
+    const [user, setUser] = sessionStorage.getItem('user') ? useState(JSON.parse(sessionStorage.getItem('user')!)) : useState(null);
+
+    useEffect(() => {
+        if (connectedUser) {
+            setUser(connectedUser);
+        }
+    }, [connectedUser]);
 
     return (
         <nav className="bg-primary shadow">
@@ -96,15 +102,64 @@ export function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                            <Avatar alt={user.name} src={user.avatar} />
+                    {user ? (
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <p className="text-white text-xs">Salut {user.firstName}</p>
+                            <div className="ml-3 relative">
+                                <div>
+                                    <button
+                                        type="button"
+                                        className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary"
+                                        id="user-menu"
+                                        aria-expanded="false"
+                                        aria-haspopup="true"
+                                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                    >
+                                        <span className="sr-only">Open user menu</span>
+                                        <Avatar alt={user.firstName} src={user.avatar} />
+                                    </button>
+                                </div>
+                                {/*
+                                Profile dropdown panel, show/hide based on dropdown state.
+                                Entering: "transition ease-out duration-100"
+                                From: "transform opacity-0 scale-95"
+                                To: "transform opacity-100 scale-100"
+                                Leaving: "transition ease-in duration-75"
+                                From: "transform opacity-100 scale-100"
+                                To: "transform opacity-0 scale-95"
+                                */}
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={document.getElementById('user-menu')}
+                                    open={isMenuOpen}
+                                    onClose={() => setIsMenuOpen(false)}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+                                    <MenuItem onClick={() => setIsMenuOpen(false)}>Profile</MenuItem>
+                                    <MenuItem onClick={() => setIsMenuOpen(false)}>My account</MenuItem>
+                                    <MenuItem onClick={() => {
+                                        setIsMenuOpen(false);
+                                        setConnectedUser(null);
+                                    }}><Link to="/logout">Logout</Link></MenuItem>
+                                </Menu>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <Link
+                                to="/login"
+                                className="text-white hover:bg-white hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                            >
+                                Login
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
             {/* Mobile menu, show/hide based on menu state. */}
-            <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
+            <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden`}>
                 <div className="px-2 pt-2 pb-3 space-y-1">
                     <Link
                         to="/"
@@ -129,4 +184,4 @@ export function Header() {
             </div>
         </nav>
     );
-}
+};

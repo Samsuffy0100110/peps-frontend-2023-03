@@ -15,6 +15,7 @@ export function Logout() {
     useEffect(() => {
         if (!Loading) {
             sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user');
             navigate('/accueil');
         }
     }
