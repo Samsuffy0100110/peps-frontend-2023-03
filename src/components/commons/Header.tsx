@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
     const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false);
     const [user, setUser] = sessionStorage.getItem('user') ? useState(JSON.parse(sessionStorage.getItem('user')!)) : useState(null);
 
     useEffect(() => {
@@ -113,7 +114,7 @@ export const Header = () => {
                                         id="user-menu"
                                         aria-expanded="false"
                                         aria-haspopup="true"
-                                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                        onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                                     >
                                         <span className="sr-only">Open user menu</span>
                                         <Avatar alt={user.firstName} src={user.avatar} />
@@ -131,16 +132,16 @@ export const Header = () => {
                                 <Menu
                                     id="basic-menu"
                                     anchorEl={document.getElementById('user-menu')}
-                                    open={isMenuOpen}
-                                    onClose={() => setIsMenuOpen(false)}
+                                    open={isProfileMenuOpen}
+                                    onClose={() => setIsProfileMenuOpen(false)}
                                     MenuListProps={{
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
-                                    <MenuItem onClick={() => setIsMenuOpen(false)}>Profile</MenuItem>
-                                    <MenuItem onClick={() => setIsMenuOpen(false)}>My account</MenuItem>
+                                    <MenuItem onClick={() => setIsProfileMenuOpen(false)}>Profile</MenuItem>
+                                    <MenuItem onClick={() => setIsProfileMenuOpen(false)}>My account</MenuItem>
                                     <MenuItem onClick={() => {
-                                        setIsMenuOpen(false);
+                                        setIsProfileMenuOpen(false);
                                         setConnectedUser(null);
                                     }}><Link to="/logout">Logout</Link></MenuItem>
                                 </Menu>

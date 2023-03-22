@@ -7,6 +7,7 @@ const links = [
     { name: 'logout', path: '/logout' },
     { name: 'admin', path: '/admin' },
     { name: '404', path: '/*' },
+    { name: '403', path: '/no-way'}
 ];
 
 export const Footer = () => {
