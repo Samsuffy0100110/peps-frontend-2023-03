@@ -1,8 +1,22 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 
-export const ConnectedUserContext = createContext({} as any);
-export const ConnectedUserContextProvider = ({ children }: { children:  React.ReactNode })  => {
+type UserContextType = {
+    connectedUser: any;
+    setConnectedUser: React.Dispatch<React.SetStateAction<any>>;
+};
 
+export const ConnectedUserContext = createContext<UserContextType>({
+    connectedUser: null,
+    setConnectedUser: () => null,
+});
+
+type ConnectedUserContextProviderProps = {
+    children: ReactNode;
+};
+
+export const ConnectedUserContextProvider = ({
+    children,
+}: ConnectedUserContextProviderProps) => {
     const [connectedUser, setConnectedUser] = useState<any>(null);
 
     return (
