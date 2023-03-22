@@ -1,8 +1,11 @@
+import { ConnectedUserContext } from "@/contexts/ConnectedUserContext";
+import { Menu, MenuItem } from '@mui/material';
+import { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export function Header() {
+    const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [user, setUser] = useState({ name: 'John Doe', avatar: 'https://i.pravatar.cc/300' });
 

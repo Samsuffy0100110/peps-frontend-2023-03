@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 export function Login() {
-    const { setConnectedUser } = useContext<any>(ConnectedUserContext);
+    const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const navigate = useNavigate();
 
     const [formDatas, setFormDatas] = useState({
@@ -29,11 +29,19 @@ export function Login() {
             );
             sessionStorage.setItem("token", response.data.token);
 
-            const decodedToken = jwt_decode<{roles: string[]}>(response.data.token);
-            setConnectedUser();
+            const decodedToken = jwt_decode<{ id: number, roles: string[] }>(response.data.token);
+
+            const connectingUser = await axios.get(
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/${decodedToken.id}`
+            );
+
+            setConnectedUser(connectingUser.data);
+
             if (decodedToken.roles.includes("ROLE_ADMIN")) {
+                console.log(connectingUser.data);
                 navigate("/admin");
             } else {
+                console.log(connectingUser.data);
                 navigate("/accueil");
             }
         } catch (error) {
