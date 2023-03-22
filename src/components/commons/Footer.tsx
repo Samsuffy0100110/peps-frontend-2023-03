@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const links = [
     { name: 'landing page', path: '/' },
     { name: 'accueil', path: '/accueil' },
+    { name: 'register', path: '/register' },
     { name: 'login', path: '/login' },
     { name: 'logout', path: '/logout' },
     { name: 'admin', path: '/admin' },

@@ -5,6 +5,7 @@ import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { Error403 } from "@/pages/errors/Error403";
 import { Error404 } from "@/pages/errors/Error404";
 import { LandingPage } from "@/pages/LandingPage";
+import { Register } from "@/pages/Register";
 import { Logout } from "@/pages/Logout";
 import { Login } from "@/pages/Login";
 import { Home } from "@/pages/Home";
@@ -19,6 +20,7 @@ export const App = () => {
                     <Route path="/accueil" element={<Home />} />
                     <Route path="*" element={<Error404 />} />
                     <Route path="/no-way" element={<Error403 />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route
