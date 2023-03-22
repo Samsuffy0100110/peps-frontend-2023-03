@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function LandingPage() {
+export const LandingPage = () => {
     return (
         <div>
             <Link to="/accueil" className="btn btn-primary">Accueil</Link>

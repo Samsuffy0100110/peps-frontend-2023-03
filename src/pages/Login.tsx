@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 
-export function Login() {
+export const Login = () => {
     const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const navigate = useNavigate();
 
@@ -38,10 +38,8 @@ export function Login() {
             setConnectedUser(connectingUser.data);
             sessionStorage.setItem("user", JSON.stringify(connectingUser.data));
             if (decodedToken.roles.includes("ROLE_ADMIN")) {
-                console.log(connectingUser.data);
                 navigate("/admin");
             } else {
-                console.log(connectingUser.data);
                 navigate("/accueil");
             }
         } catch (error) {

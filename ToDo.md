@@ -1,1 +1,0 @@
-fix refresh for all admin routes

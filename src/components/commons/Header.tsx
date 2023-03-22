@@ -4,7 +4,7 @@ import { Menu, MenuItem } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 
-export function Header() {
+export const Header = () => {
     const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [user, setUser] = sessionStorage.getItem('user') ? useState(JSON.parse(sessionStorage.getItem('user')!)) : useState(null);

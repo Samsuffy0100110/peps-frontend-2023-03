@@ -2,7 +2,7 @@ import { GetProducts } from "@/components/shop/GetProducts";
 import { Footer } from "@/components/commons/Footer";
 import { Header } from "@/components/commons/Header";
 
-export function Home() {
+export const Home = () => {
     return (
         <>
             <Header />

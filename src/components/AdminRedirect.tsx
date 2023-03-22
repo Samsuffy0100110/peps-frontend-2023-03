@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function AdminRedirect() {
+export const AdminRedirect = () => {
     const [loading , setLoading] = useState<boolean>(true);
 
     useEffect(() => {

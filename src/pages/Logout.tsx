@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export function Logout() {
+export const Logout = () => {
     const navigate = useNavigate();
     const [Loading , setLoading] = useState<boolean>(true);
 

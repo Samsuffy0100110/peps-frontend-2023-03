@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function GetCategories() {
+export const GetCategories = () => {
     const [categories, setCategories] = useState<any[]>([]);
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export function GetProducts() {
+export const GetProducts = () => {
 
 
     const [products, setProducts] = useState<string[]>([]);

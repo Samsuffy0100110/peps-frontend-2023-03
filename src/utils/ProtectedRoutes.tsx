@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 
-export function ProtectedRoutes({ children }: { children: JSX.Element }) {
+export const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
