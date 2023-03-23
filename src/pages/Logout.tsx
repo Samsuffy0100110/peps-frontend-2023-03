@@ -8,34 +8,26 @@ export const Logout = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 3000);
+            sessionStorage.clear();
+            navigate("/accueil", {replace: true});
+            window.location.reload();
+        }, 2000);
         return () => clearTimeout(timer);
     }, []);
 
-    useEffect(() => {
-        if (!Loading) {
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('user');
-            navigate('/accueil');
-        }
-    }
-    , [Loading, navigate]);
-    return (
+    return (   
         <>
-        {Loading ? (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-                <h2 className="text-3xl font-bold underline text-primary">
-                    Deconnexion.....
-                </h2>
-            </div>
-        ) : (
-            <>
-                <h2 className="text-3xl font-bold underline text-primary">
-                    Deconnexion....
-                </h2>
-            </>
-        )}
+            {Loading ? (
+                <div className="flex justify-center items-center h-screen">
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+                </div>
+            ) : (
+                <>
+                    <h2 className="text-3xl font-bold underline text-primary">
+                        Pep's Design
+                    </h2>
+                </>
+            )}
         </>
     );
 }

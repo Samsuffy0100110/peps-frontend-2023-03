@@ -1,13 +1,19 @@
 import { ConnectedUserContext } from "@/contexts/ConnectedUserContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
 
-export const Register = () => {
+type FormValues = {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+};
+
+export const Register = (): JSX.Element => {
     const navigate = useNavigate();
-    const { connectedUser, setConnectedUser } = useContext<any>(ConnectedUserContext);
-    const [htmlFormDatas, sethtmlFormDatas] = useState<{ email: string, password: string, passwordConfirm: string }>({
+    const { connectedUser, setConnectedUser } = useContext(ConnectedUserContext);
+
+    const [htmlFormDatas, setHtmlFormDatas] = useState<FormValues>({
         email: "",
         password: "",
         passwordConfirm: "",
@@ -15,27 +21,23 @@ export const Register = () => {
 
     const [error, setError] = useState<string | null>(null);
 
-    const handleChange = (event: any) => {
-        const { name, value } = event.currentTarget;
-        sethtmlFormDatas({ ...htmlFormDatas, [name]: value });
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setHtmlFormDatas((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const handleSubmit = async (event: any) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const response = await axios.post(
+            const response = await axios.post<{ id: string }>(
                 `${import.meta.env.VITE_BACKEND_URL}/api/register`,
                 htmlFormDatas
             );
-            sessionStorage.setItem("token", response.data.token);
-
             const connectingUser = await axios.get(
                 `${import.meta.env.VITE_BACKEND_URL}/api/user/${response.data.id}`
             );
-
             setConnectedUser(connectingUser.data);
             sessionStorage.setItem("user", JSON.stringify(connectingUser.data));
-
             navigate("/accueil");
         } catch (error) {
             setError("Identifiants incorrects");
